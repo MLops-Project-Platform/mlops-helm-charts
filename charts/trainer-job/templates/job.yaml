@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-iris-{{ .Values.job.nameSuffix | trunc 40 | trimSuffix "-" }}
+  namespace: mlops
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: ghcr-pull
+      containers:
+        - name: train
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          env:
+            - name: MLFLOW_TRACKING_URI
+              value: "{{ .Values.mlflow.trackingUri }}"
+            - name: CONFIG_PATH
+              value: "{{ .Values.job.configPath }}"
+          resources:
+            limits:
+              nvidia.com/gpu: "{{ .Values.job.gpu }}"
+          command: ["python", "src/train.py"]

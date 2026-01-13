@@ -1,0 +1,9 @@
+image:
+  repository: ghcr.io/mlops-project-platform/mlops-research-template
+  tag: v1.0.4-prod
+mlflow:
+  trackingUri: http://mlflow.mlops.svc.cluster.local:5000
+job:
+  nameSuffix: v1.0.4-prod
+  gpu: 1
+  configPath: configs/default.yaml
