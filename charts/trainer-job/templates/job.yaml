@@ -5,7 +5,7 @@ metadata:
   namespace: mlops
 spec:
   backoffLimit: 0
-  ttlSecondsAfterFinished: 600
+  ttlSecondsAfterFinished: {{ .Values.ttlSecondsAfterFinished | default 3600 }}
   template:
     spec:
       restartPolicy: Never

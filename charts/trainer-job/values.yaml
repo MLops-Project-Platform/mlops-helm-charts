@@ -7,3 +7,4 @@ job:
   nameSuffix: v1.0.4-prod
   gpu: 1
   configPath: configs/default.yaml
+ttlSecondsAfterFinished: 3600
