@@ -1,0 +1,6 @@
+apiVersion: v2
+name: trainer-job
+description: Run training jobs on Kubernetes (GPU)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
